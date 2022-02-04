@@ -1,6 +1,7 @@
 
 package fridayassignment;
 import java.util.*;
+import java.util.Random;
 public class CountLettersInArray {
 	 
 	  public static void main(String[] args) {
@@ -8,19 +9,24 @@ public class CountLettersInArray {
 	    char[] letters = createArray();  
 	    System.out.println("The lowercase letters are:");
 	    displayArray(letters);
-	    int[] counts = countLetters(letters);
+	    int[] count = countLetters(letters);
 	    System.out.println();
 	    System.out.println("Frequency of each alphabet :");
-	    displayCounts(counts);
+	    displayCounts(count);
 	  }
 
 	
 	  public static char[] createArray() {
 	   
-		  Scanner s = new Scanner(System.in);
-	      System.out.println("Enter the characters");
-	      char[] a = s.next().toCharArray();  
-	    return a;
+		  char[] a = new char[100];
+		  
+		  for (int i = 0; i < a.length; i++) {
+			  Random rnd = new Random();
+			  char r = (char) (rnd.nextInt(26) + 'a');
+		      a[i] = r;
+		      
+		  }
+	      return a;
 	  }
 	
 	  public static void displayArray(char[] a) {
@@ -32,22 +38,19 @@ public class CountLettersInArray {
 		    }
 	  }
 	 
-	  public static int[] countLetters(char[] a) {
-	    
+	  public static int[] countLetters(char[] a) {    
 	    int[] count = new int[26];
-
 	    for (int i = 0; i < a.length; i++)
 	      count[a[i]-'a']++;
-
 	    return count;
 	  }
 
 	  public static void displayCounts(int[] count) {
 	    for (int i = 0; i < count.length; i++) {
 	      if ((i + 1) % 10 == 0)
-	        System.out.println("("+count[i]+" : "+(char)(i+'a')+")");
+	        System.out.println("("+count[i]+" : "+(char)(i+'a')+") ");
 	      else
-	        System.out.print("("+count[i]+" : "+(char)(i+'a')+")");
+	        System.out.print("("+count[i]+" : "+(char)(i+'a')+") ");
 	    }
 	  }
 	}
